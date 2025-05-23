@@ -35,9 +35,40 @@ function draw() {
       321, 375, 291,
     ];
 
+    // Additional points for new array
+    const additionalPoints = [
+      76, 77, 90, 180, 85, 16, 315, 404, 320, 307, 306, 408, 304, 303, 302, 11,
+      72, 73, 74, 184,
+    ];
+
+    // Fill the area between the two arrays with green
+    fill(0, 255, 0); // Green fill
     beginShape();
     for (let i = 0; i < lipPoints.length; i++) {
       const [x, y] = keypoints[lipPoints[i]];
+      vertex(x, y);
+    }
+    for (let i = additionalPoints.length - 1; i >= 0; i--) {
+      const [x, y] = keypoints[additionalPoints[i]];
+      vertex(x, y);
+    }
+    endShape(CLOSE);
+
+    // Draw the first array (lips)
+    noFill();
+    stroke(255, 0, 0); // Red color
+    beginShape();
+    for (let i = 0; i < lipPoints.length; i++) {
+      const [x, y] = keypoints[lipPoints[i]];
+      vertex(x, y);
+    }
+    endShape(CLOSE);
+
+    // Draw the second array
+    fill(255, 255, 0); // Yellow fill
+    beginShape();
+    for (let i = 0; i < additionalPoints.length; i++) {
+      const [x, y] = keypoints[additionalPoints[i]];
       vertex(x, y);
     }
     endShape(CLOSE);
